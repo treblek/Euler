@@ -1,0 +1,111 @@
+////////////Not yet completed
+
+#include "stdio.h"
+#include "stdlib.h"
+#define maxValue 10000
+unsigned int nod(unsigned int num);
+unsigned short int comp(int,int);
+short unsigned int prime(int num);
+unsigned int pow(int num1,int num2);
+unsigned int addToFirstLine(int num1,int num2);
+unsigned int addToLastLine(int num1,int num2);
+void setArr(int primeNumbers[],int tot);
+int main(void)
+{
+	int primeNumbers[maxValue];
+	setArr(primeNumbers,maxValue);
+	int last=0,flag=0;
+	for(int i =3;i<maxValue;i+=2)
+	{
+		if(primeNumbers[i]==1)
+		{
+			for(int j=3;j<maxValue;j+=2)
+			{
+				if(primeNumbers[j]==1&&comp(i,j))
+				{
+					for(int k=3;k<maxValue;k+=2)
+					{
+						if(primeNumbers[k]&&comp(i,k)&&comp(j,k))
+						{
+							for(int l=3;l<maxValue;l+=2)
+							{
+								if(primeNumbers[l]&&comp(i,l)&&comp(i,j),comp(j,k))
+								{
+									for(int m=3;m<maxValue;m+=2)
+									{
+										if(primeNumbers[m]&&comp(i,m)&&comp(m,j)&&comp(m,k)&&comp(m,l))
+										{
+												printf("%d\n", i+j+k+l+m);
+										}
+									}
+								}
+								
+							}					
+						}
+					}
+				}
+			}
+			
+		}
+	}
+	return -1;
+}
+
+unsigned short int comp(int num1,int num2)
+{
+	if(prime(addToFirstLine(num1,num2))==1&&prime(addToLastLine(num1,num2))==1)
+	return 1;
+	return 0;
+}
+unsigned int pow(int num1,int num2)
+{
+	unsigned int res=1;
+	for(unsigned int i =0;i<num2;i++)
+	{
+		res*=num1;
+	}
+	return res;
+}
+void setArr(int primeNumbers[],int tot)
+{
+	for(int i =0;i<maxValue;i++)
+	{
+		primeNumbers[i] == 0;
+		if(prime(i) == 1) primeNumbers[i]=1;
+	}
+}
+unsigned int addToFirstLine(int num1,int num2)
+{
+	//5 1025 
+	if(num2%10==0)return 1;
+	int res;
+		num1 *=pow(10,nod(num2));
+		num1 +=num2;
+		res = num1;
+		return res;
+}
+unsigned int addToLastLine(int num1,int num2)
+{// 01
+	if(num1%10==0)return 1;
+	unsigned int res;
+	num2 *=pow(10,nod(num1));
+	num2+=num1;
+	res = num2;
+	return res;
+}
+short unsigned int prime(int num)
+{
+	if(num==0||num==1) return 0;
+	for(int i =2;i<=num/2;i++)
+		if(num%i==0)
+		return 0;
+		
+		return 1;
+}
+unsigned int nod(unsigned int num)
+{
+	unsigned int res;
+	while(num>=1)
+		{res++;num/=10;} return res;
+		
+}
