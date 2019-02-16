@@ -1,0 +1,87 @@
+
+
+#include "stdio.h"
+#include "stdlib.h"
+unsigned int comp(unsigned int num1,int num2);
+unsigned int nod(unsigned int num);
+unsigned int cube(unsigned int num);
+void intToSeries(int num,char series[],int sum);
+int biggest(int series[],int tot);
+int main(void)
+{
+	int *cubes = (int*)malloc(sizeof(int)*5);
+	for(unsigned int i =1;i<=1000;i++)
+	{
+		for(unsigned j=1;j<=1000;j++)
+		{
+			for(unsigned k = 1;k<=1000;k++)
+			{
+					for(unsigned l= 1;k<=1000;k++)
+			{
+				for(unsigned m =1;k<=1000;k)
+				{
+					if(comp(cube(i),cube(j))==1&&comp(cube(i),cube(k))==1&&comp(cube(i),cube(l))==1&&comp(cube(i),cube(m))==1&&comp(cube(j),cube(k))==1&&comp(cube(j),cube(l))==1&&comp(cube(j),cube(l))==1&&comp(cube(j),cube(m))==1&&comp(cube(k),cube(l))==1&&comp(cube(k),cube(l))==1&&comp(cube(k),cube(m))==1&&comp(cube(l),cube(m))==1)
+				{
+					printf("Sonuc : %d",biggest(cubes,5));	
+				}
+				}
+			}
+			}
+		}
+	}
+	return -1;
+}
+
+
+unsigned int cube(unsigned int num){
+return num*num*num;}
+
+int biggest(int series[],int tot)
+{
+	int res=0;
+	for(int i=0;i<tot;i++)
+	{
+		for(int k =0;k<tot;k++)
+		{
+			if(series[k]>series[i])
+			{
+				res=series[k];
+			}
+		}
+	}
+	return res;
+}
+
+unsigned int comp(unsigned int num1,int num2)//Bu kısmı yapamadım yapınca ekleyeceğim.
+{
+	char *cnum1 = (char*)malloc(sizeof(char)*nod(num1));
+	char *cnum2 = (char*)malloc(sizeof(char)*nod(num2));
+	intToSeries(num1,cnum1,nod(num1));
+	intToSeries(num2,cnum1,nod(num2));
+	
+	for(unsigned int i =0;i<nod(num1);i++)
+	{
+		for(unsigned int j=0;j<nod(num2);j++)
+		{
+		}
+	}
+}
+
+void intToSeries(int num,char series[],int sum)
+{
+	for(unsigned int i=0;i<sum;i++)
+	{
+		series[i] = num%10;
+		num/=10;
+	}
+}
+
+
+
+unsigned int nod(unsigned int num)
+{
+	unsigned int res;
+	while(num>=1)
+		{res++;num/=10;} return res;
+		
+}
