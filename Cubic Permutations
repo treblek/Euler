@@ -54,6 +54,7 @@ int biggest(int series[],int tot)
 
 unsigned int comp(unsigned int num1,int num2)//Bu kısmı yapamadım yapınca ekleyeceğim.
 {
+if(nod(num1) !=nod(num2))return 0;
 	char *cnum1 = (char*)malloc(sizeof(char)*nod(num1));
 	char *cnum2 = (char*)malloc(sizeof(char)*nod(num2));
 	intToSeries(num1,cnum1,nod(num1));
