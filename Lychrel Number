@@ -1,0 +1,69 @@
+#include "stdio.h"
+#include "stdint.h"
+
+//Tam olarak doğru sonuç vermemesinin nedeni toplamın integere sığmaması.
+bool palindromeControl(int gonderilenSayi);
+int reverse(int gonderilenSayi);
+uint8_t nOD(int gonderilenSayi);
+int pow (int num1,int num2);
+bool lychrelControl(int gonderilenSayi);
+int main(void)
+{
+	int result =0;
+	for(int i=0;i<10000;i++)
+	{
+		if(lychrelControl(i))
+		result ++;
+	}
+	printf("There is %d Lychrel number under 10000",result);
+	return -1;
+}
+bool lychrelControl(int gonderilenSayi)
+{
+	int flag=0;
+	for(uint8_t i =0;i<50;i++)
+	{
+		gonderilenSayi +=reverse(gonderilenSayi);
+		if(palindromeControl(gonderilenSayi))
+		{
+			flag =1;
+			break;
+		}
+	}
+	if(flag==0)return true;
+	else return false;
+}
+bool palindromeControl(int gonderilenSayi)
+{
+	if(reverse(gonderilenSayi) == gonderilenSayi)return true;
+	return false;
+}
+int pow (int num1,int num2)//just integers
+{
+	int result =1;
+	for(uint8_t i = 0;i<num2;i++)
+	{
+		result *=num1;
+	}
+	return result;
+}
+int reverse(int gonderilenSayi)
+{
+	int result=0;
+	for(uint8_t i = nOD(gonderilenSayi);i>0;i--)
+	{
+		result += pow(10,i-1)*(gonderilenSayi%10);
+		gonderilenSayi/=10;
+	}
+	return result;
+}
+uint8_t nOD(int gonderilenSayi)
+{
+	uint8_t result=0;
+	while(gonderilenSayi >0)
+	{
+		gonderilenSayi/=10;
+		result++;
+	}
+	return result;
+}
